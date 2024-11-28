@@ -81,7 +81,7 @@
   height: 20%;
   position: absolute;
   left: 14%; 
-  top: 40%; 
+  top: 50%; 
   transform: translateY(-50%); 
   background-color: #e8dcd0;
   border-radius: 10px;
@@ -95,6 +95,7 @@
 .titleBox .title {
   font-family: 'quer', sans-serif;
   font-size: 70px; 
+  font-weight: 700;
   color: #181d22;
 }
 
@@ -102,8 +103,8 @@
   width: 40%; 
   height: 20%;
   position: absolute;
-  left: 6%; 
-  top:60%; 
+  left: 4%; 
+  top:70%; 
   transform: translateY(-50%); 
   background-color: #e8dcd0;
   border-radius: 10px;
@@ -112,13 +113,16 @@
   flex-direction: column; 
   justify-content: center; 
   align-items: center; 
+  font-weight: 600;
 }
 
 .subBox .title {
   font-family: 'quer', sans-serif;
-  font-size: 30px; 
+  font-size: 40px; 
   color: #181d22;
 }
+
+
 
 .eventMenu {
   width: 50%; 
@@ -140,126 +144,17 @@
   position: relative; 
 }
 
-.DiagramCard {
-  width: 30%; 
-  height: 90%;
-  position: absolute;
-  left: 8%; 
-  top: 50%; 
-  transform: translateY(-50%); 
-  background-color: #494949;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  padding-top: 2%;
-  display: flex;
-  flex-direction: column; 
-}
 
-.DiagramCard .bottom {
-  position: absolute; 
-  bottom: 0; 
-  width: 100%; 
-  height: 40%; 
-  background-color: #494949; 
-  padding: 0; 
-  display: flex; 
-  border-bottom-left-radius: 10px; 
-  border-bottom-right-radius: 10px; 
-}
-
-.bottom .left, 
-.bottom .right {
+.score {
+  margin-top: 2%;
+  margin-left: 2%;
   font-family: 'intro', sans-serif;
-  width: 50%; 
-  height: 100%; 
-  background-color: #494949; 
-  display: flex; 
-  flex-direction: column; /* Для вертикального розташування */
-  justify-content: flex-start; /* Вирівнювання до верху */
-  align-items: center; 
-  padding-top: 5%; /* Відступ зверху */
-  gap: 25%; /* Відступ між об'єктами */
-  border-bottom-left-radius: 10px; 
-  border-bottom-right-radius: 10px; 
+  font-size: 30px; 
+  color: #c8c8f5;
+  position: relative; 
+  z-index: 100; 
+
 }
-
-.bottom label {
-  display: block;
-  font-size: 1.2rem;
-  color: #5cb57b;
-}
-
-.memberInfo {
-  width: 60%; 
-  height: 90%;
-  position: absolute;
-  left: 40%; 
-  top: 50%; 
-  transform: translateY(-50%); 
-  background-color: #494949;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  padding-top: 2%;
-  display: flex;
-  flex-direction: column; 
-}
-
-.memberInfo .top {
-  position: absolute; 
-  top: 0; 
-  margin-top: 2.5%;
-  margin-left: 2.5%;
-  width: 95%; 
-  height: 75%; 
-  background-color: #e8dcd0; 
-  padding: 5%; 
-  display: flex; 
-  border-radius: 10px;
-  gap: 0.5%;  /* Уменьшаем расстояние между карточками */
-  flex-wrap: wrap; /* Разрешаем перенос карточек на новую строку */
-}
-
-.top .card {
-  width: 32.5%; /* Для 3 карточек в ряду, с учетом отступов */
-  height: 45%; /* Фиксированная высота карточки */
-  background-color: #444444;
-  top: 0;
-  flex-direction: column; /* Столбцы */
-  display: flex;
-  border-radius: 10px;
-  margin-bottom: 0.2%; /* Уменьшаем отступ между рядами карточек */
-  padding: 5px; /* Внутренние отступы */
-  color: #ffffff; /* Цвет текста */
-}
-
-.card-top {
-  padding-top: 6%;
-  padding-left: 8%;
-  flex: 1; /* Верхняя часть займет 50% */
-  background-color: #444444; /* Дополнительный цвет */
-  font-size: 20px;
-  border-radius: 10px;
-  color: #00ff62;
-  
-}
-
-.card-bottom {
-  
-  padding-left: 10%;
-  border-radius: 10px;
-  flex: 1; /* Нижняя часть займет 50% */
-  background-color: #444444; /* Дополнительный цвет */
-  font-size: 25px;
-  color: #09df74;
-  padding-bottom: 9%;
-}
-
-
-
-
-
-
-
 
 .Info {
   width: 85%;
@@ -306,8 +201,11 @@
   text-align: center; 
 }
 
-.buttonLeft:hover {
+.buttonLeft:hover,
+.buttonLeft:active {
   background-color: #252d35;   
   border: 2px solid #e8dcd0;   
   color: #e8dcd0;             
 }
+
+
