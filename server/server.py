@@ -39,6 +39,46 @@ def get_ai_data():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+@app.route('/server/angles', methods=['POST'])
+def ai_data():
+    try:
+        # Чтение содержимого analys.json
+        with open("analys.json", "r") as file:
+            analys_data = json.load(file)
+        
+        # Преобразуем данные в строку для использования в запросе
+        user_message = json.dumps(analys_data, ensure_ascii=False, indent=4)
+        ask = f"Запиши в формате json файла: {user_message}"
+
+        # Проверяем, есть ли содержимое
+        if not user_message:
+            return jsonify({"error": "analys.json is empty"}), 400
+
+        # Отправка запроса к OpenAI API
+        response = client.chat.completions.create(
+            messages=[{"role": "user", "content": ask}],
+            model="gpt-4-turbo"
+        )
+
+        ai_response = response.choices[0].message.content.strip()
+
+        # Проверяем, является ли ответ корректным JSON
+        try:
+            json_response = json.loads(ai_response)
+        except json.JSONDecodeError:
+            json_response = {"response": ai_response}
+
+        # Сохраняем ответ в JSON-файл
+        with open("ai_response.json", "w") as file:
+            json.dump(json_response, file, indent=4)
+
+        return jsonify(json_response)
+    except FileNotFoundError:
+        return jsonify({"error": "analys.json file not found"}), 404
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
 
         
 
@@ -73,7 +113,7 @@ def upload_json():
 def ai_data():
     data = request.json
     user_message = data.get("message", "")
-    ask = f"Я буду давать тебе текст, ты должен оценить текст от 0 до 100, сам текст:{user_message}, если не можешь оценить текст оцени его на оценку 0, если он имеет набор слов но он не савязани логически или имеет какие либо проблемы, оцени его оценкой 0, если текст похож на написаный человек напиши 0, остальная оценка зависит от схожости написаного текста, с патернами которые ты используешь для написания текста, также проверь сущиствует ли этот текс в интернете если да, то оцени его в 0,  в конце анализа напиши только оценку от 0 до 100"
+    ask = f"Я буду давать тебе текст, c начало проверь его на плагиат, попробуй найти источник откуда он был взят, если проверка на плагиат прошла успешно то ты должен оценить текст от 0 до 100, сам текст:{user_message}, если не можешь оценить текст оцени его на оценку 0, если он имеет набор слов но он не савязани логически или имеет какие либо проблемы, оцени его оценкой 0, если текст похож на написаный человек напиши 0, остальная оценка зависит от схожости написаного текста, с патернами которые ты используешь для написания текста, также проверь сущиствует ли этот текс в интернете если да, то оцени его в 0,  в конце анализа напиши только оценку от 0 до 100"
 
     if not user_message:
         return jsonify({"error": "Message is required"}), 
@@ -82,7 +122,7 @@ def ai_data():
         # Отправляем запрос к OpenAI API
         response = client.chat.completions.create(
             messages=[{"role": "user", "content": ask}],
-            model="gpt-3.5-turbo"  
+            model="gpt-4-turbo"  
         )
         # Извлекаем ответ
         ai_response = response.choices[0].message.content

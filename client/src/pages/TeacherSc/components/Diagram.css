@@ -1,0 +1,75 @@
+.DiagramCard {
+  width: 30%;
+  height: 90%;
+  position: absolute;
+  left: 1%;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #494949;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  padding-top: 2%;
+  display: flex;
+  flex-direction: column;
+}
+
+.DiagramCard .bottom {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40%;
+  background-color: #494949;
+  padding: 0;
+  display: flex;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.bottom .left,
+.bottom .right {
+  font-family: 'intro', sans-serif;
+  width: 50%;
+  height: 100%;
+  background-color: #494949;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 5%;
+  gap: 20%;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.bottom label {
+  display: block;
+  font-size: 1.2rem;
+  color: #5cb57b;
+}
+
+.DiagramCard .pie-container {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin-top: 3%;
+  margin-left: 30.5%;
+  border-radius: 50%;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.8);
+  background: conic-gradient(
+    #432e2d 0deg var(--a1), /* Первый сектор (коричневый, 40%) */
+    #0fdab1 var(--a1) calc(var(--a1) + var(--a2)), /* Второй сектор (зеленый, 40%) */
+    #4c4e8d calc(var(--a1) + var(--a2)) 360deg /* Третий сектор (фиолетовый, 20%) */
+  );
+}
+
+.pie-container::after {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: calc(100% - 40px);
+  height: calc(100% - 40px);
+  background-color: #494949; /* Цвет внутреннего круга */
+  border-radius: 50%;
+  z-index: 10;
+}
