@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from openai import OpenAI
 from dotenv import load_dotenv
 import os
 import json
@@ -13,8 +14,8 @@ load_dotenv()
 
 db_password = os.getenv('DB_API')
 
-# Ключ OpenAI (оставлен для примера, но не используется)
-# client = OpenAI(api_key="")
+client = OpenAI(api_key=db_password)
+
 
 @app.route('/TestInfo', methods=['GET'])
 def get_ai_data():
@@ -39,6 +40,9 @@ def get_ai_data():
         return jsonify({"error": str(e)}), 500
 
 
+        
+
+
 # Эндпоинт для загрузки данных (POST-запрос)
 @app.route('/uploadTestinfo', methods=['POST'])
 def upload_json():
@@ -59,6 +63,31 @@ def upload_json():
     
     except Exception as e:
         # Возвращаем ошибку в случае исключения
+        return jsonify({"error": str(e)}), 500
+
+    
+#------------------------------------------------------------------------
+
+
+@app.route('/server/ai', methods=['POST'])
+def ai_data():
+    data = request.json
+    user_message = data.get("message", "")
+    ask = f"Я буду давать тебе текст, ты должен оценить текст от 0 до 100, сам текст:{user_message}, если не можешь оценить текст оцени его на оценку 0, если он имеет набор слов но он не савязани логически или имеет какие либо проблемы, оцени его оценкой 0, если текст похож на написаный человек напиши 0, остальная оценка зависит от схожости написаного текста, с патернами которые ты используешь для написания текста, также проверь сущиствует ли этот текс в интернете если да, то оцени его в 0,  в конце анализа напиши только оценку от 0 до 100"
+
+    if not user_message:
+        return jsonify({"error": "Message is required"}), 
+
+    try:
+        # Отправляем запрос к OpenAI API
+        response = client.chat.completions.create(
+            messages=[{"role": "user", "content": ask}],
+            model="gpt-3.5-turbo"  
+        )
+        # Извлекаем ответ
+        ai_response = response.choices[0].message.content
+        return jsonify({"response": ai_response})
+    except Exception as e:
         return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
