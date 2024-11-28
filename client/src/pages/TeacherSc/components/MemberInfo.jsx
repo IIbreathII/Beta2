@@ -40,15 +40,28 @@ const MemberInfo = () => {
           <label>{item.member}</label>
         </div>
         <div className="card-item">
-          <p>Name</p>
+          <p>Test Name</p>
           <label>{item.name}</label>
         </div>
         <div className="card-item">
-          <p>Time</p>
+          <p>Score</p>
           <label>{item.time}</label>
         </div>
       </div>
     ));
+  };
+  const handleDownload = () => {
+    // Преобразуем данные в строку
+    const textContent = JSON.stringify(data, null, 2);
+
+    // Создаем элемент для ссылки
+    const blob = new Blob([textContent], { type: 'text/plain' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'data.txt'; // Имя файла для скачивания
+
+    // Инициализируем скачивание
+    link.click();
   };
 
   return (
@@ -65,10 +78,11 @@ const MemberInfo = () => {
           generateCards()
         )}
       </div>
-      <div className="bottom">
-        <button className="button">Downloud Info</button>
+        <div className="bottom">
+        <button className="button" onClick={handleDownload}>Download Info</button>
       </div>
     </div>
+    
   );
 };
 

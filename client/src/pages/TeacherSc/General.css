@@ -184,6 +184,28 @@
   box-shadow: 0 4px 10px #181d22; 
 }
 
+.reloud {
+  margin-top: 22%;
+  margin-left: 45%;
+  width: 15%;
+  height: 20;
+  position: relative; 
+  z-index: 120; 
+}
+
+.reloud .button {
+  font-family: 'intro', sans-serif;
+  background-color: #e8dcd0;
+  border: none;
+  width: 150px;
+  height: 50px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  font-size: 16px;
+  color: #333;
+  transition: background-color 0.3s, color 0.3s;
+}
+
 /* Кнопки */
 .buttonLeft {
   font-family: 'intro', sans-serif;

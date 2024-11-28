@@ -1,1 +1,32 @@
-[]
+[
+  {
+    "member": "Alex",
+    "name": "Task A",
+    "time": "10:30 AM"
+  },
+  {
+    "member": "Maria",
+    "name": "Task B",
+    "time": "11:00 AM"
+  },
+  {
+    "member": "John",
+    "name": "Task C",
+    "time": "11:30 AM"
+  },
+  {
+    "member": "Sophia",
+    "name": "Task D",
+    "time": "12:00 PM"
+  },
+  {
+    "member": "Michael",
+    "name": "Task E",
+    "time": "12:30 PM"
+  },
+  {
+    "member": "Michael1",
+    "name": "Task E",
+    "time": "12:30 PM"
+  }
+]

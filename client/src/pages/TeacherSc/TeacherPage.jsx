@@ -8,7 +8,6 @@ import MemberInfo from './components/MemberInfo';
 
 
 function TeacherPage() {
-  const [data, setData] = useState(null); // Состояние для данных
   const [view, setView] = useState('General'); // Состояние для переключения между видами
   const [response, setResponse] = useState(null);
   const [error, setError] = useState(null); // Состояние для ошибок
@@ -21,24 +20,28 @@ function TeacherPage() {
 
   const handleSendMessage = async () => {
     try {
-      const res = await fetch('http://localhost:5000/TestInfo', {
+      // Отправляем POST-запрос на сервер
+      const res = await fetch('http://localhost:5000/server/ai', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ message }),
+        body: JSON.stringify({ message }), // Отправка сообщения
       });
+  
+      // Получаем ответ от сервера
       const data = await res.json();
-
+  
       if (res.ok) {
-        setResponse(data.response); // Ответ от модели
+        setResponse(data.response); // Устанавливаем полученный ответ
       } else {
-        setResponse(``);
+        setResponse(`Ошибка: ${data.error || 'Неизвестная ошибка'}`);
       }
     } catch (error) {
-      setResponse(``);
+      setResponse(`Ошибка: ${error.message}`);
     }
   };
+  
 
   
   return (
@@ -99,12 +102,12 @@ function TeacherPage() {
                 </div>
                 <div className='bottom'>
                   <div className='left'>
-                    <label style={{ color: '#5cb57b' }}>{data ? data.member : 'No data'}</label>
-                    <label style={{ color: '#432e2d' }}>{data ? data.member : 'No data'}</label>
+                    <label style={{ color: '#5cb57b' }}>{a1}</label>
+                    <label style={{ color: '#432e2d' }}>{a2}</label>
                   </div>
                   <div className='right'>
-                    <label style={{ color: '#5cb57b' }}>{data ? data.member : 'No data'}</label>
-                    <label style={{ color: '#432e2d' }}>{data ? data.member : 'No data'}</label>
+                    <label style={{ color: '#5cb57b' }}>{a3}</label>
+                    <label style={{ color: '#432e2d' }}>{a4}</label>
                   </div>
                 </div>
               </div>
@@ -115,6 +118,9 @@ function TeacherPage() {
                 
                 <MemberInfo />
               
+              </div>
+              <div className="reloud">
+                <button className='button'>Update info</button>
               </div>
 
               {/*-----------------------------------------------*/}
