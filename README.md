@@ -7,6 +7,9 @@
 
 ---
 
+![Видео без названия — сделано в Clipchamp](https://github.com/user-attachments/assets/284cc775-b434-42df-9af2-29a1a39cb78f)
+
+
 ## 🚀 Working with the Website
 
 Once the application is up and running, you can interact with the various features it offers. Here’s a breakdown of how to use the different sections of the site:
