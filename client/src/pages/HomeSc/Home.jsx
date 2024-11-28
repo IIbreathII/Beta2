@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import "./Style/Home.css";
+import "./Home.css";
 import LayerBase from "./image/layer-base.png"
 import LayerMiddle from "./image/layer-middle.png"
 import LayerFront from "./image/layer-front.png"

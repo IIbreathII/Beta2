@@ -139,9 +139,10 @@ body {
 .startButton {
 	font-family: 'raleway_f', sans-serif;
 	font-size: calc(var(--index) * 1.3);
-	color: #aa3232;
+	color: #252d35;   
+  background: #e8dcd0;
+  border: 2px solid #252d35;
 	padding: 20px 90px;
-	background: #252d35;
 	box-shadow: 0 0 15px #000000;
 	user-select: none;
 	max-width: calc(var(--index) * 30);
@@ -155,7 +156,7 @@ body {
 }
 
 .startButton:hover {
-	background-color: #aa3232;   /* Цвет фона при наведении */
-  border: 4px solid #252d35;   /* Цвет границы при наведении */
-  color: #252d35;     
+	background-color: #252d35;   
+  border: 2px solid #e8dcd0;   
+  color: #e8dcd0  
 }

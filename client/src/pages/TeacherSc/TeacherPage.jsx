@@ -41,6 +41,10 @@ function TeacherPage() {
       setResponse(`Ошибка: ${error.message}`);
     }
   };
+
+  const handleUpdate = () => {
+    window.location.reload(); // Перезагружает текущую страницу
+  };
   
 
   
@@ -120,7 +124,7 @@ function TeacherPage() {
               
               </div>
               <div className="reloud">
-                <button className='button'>Update info</button>
+                <button className="button" onClick={handleUpdate}>Update info</button>
               </div>
 
               {/*-----------------------------------------------*/}
